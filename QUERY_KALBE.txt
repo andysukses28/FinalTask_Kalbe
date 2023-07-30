@@ -1,0 +1,32 @@
+QUERY 1 :
+
+SELECT marital_status ,
+CAST(AVG(age)as integer) as rata_rata_umur
+FROM customer
+WHERE marital_status != ''
+GROUP BY marital_status;
+
+QUERY 2 :
+
+SELECT gender , 
+CAST(AVG(age)as integer) AS rata_rata_umur
+FROM customer
+GROUP BY gender;
+
+QUERY 3 :
+
+SELECT s.store_name, SUM(t.qty) AS total_qty
+FROM store s
+JOIN transaction t ON s.storeid = t.storeid
+GROUP BY s.store_name
+ORDER BY total_qty DESC
+LIMIT 1;
+
+QUERY 4 :
+
+SELECT p.product_name, SUM(o.total_amount) AS total
+FROM product p
+JOIN transaction o ON p.productid = o.productid
+GROUP BY p.product_name
+ORDER BY total DESC
+LIMIT 1;
